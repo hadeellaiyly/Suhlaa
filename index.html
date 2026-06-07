@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة سهلة</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Tajawal:wght@300;400;500;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">منصة <span>سهلة</span></a>
+  <ul class="nav-links">
+    <li><button class="active" onclick="showPage('home')">🏠 الرئيسية</button></li>
+    <li><button onclick="showPage('lessons')">📚 الدروس</button></li>
+    <li><button onclick="showPage('flashcards')">🃏 البطاقات</button></li>
+    <li><button onclick="showPage('quiz')">🎯 الاختبار</button></li>
+    <li><button onclick="showPage('grammar')">📝 القواعد</button></li>
+    <li><button onclick="showPage('speaking')">🔊 المحادثة</button></li>
+  </ul>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-badge">✨ منصة تعليم متكاملة ومجانية</div>
+    <h1>
+      <span class="en">Learn English</span>
+      <span class="ar">تعلم الإنجليزية بطريقة ذكية</span>
+    </h1>
+    <p>اكتشف طريقة مختلفة لتعلم اللغة الإنجليزية — دروس تفاعلية، بطاقات تعليمية، اختبارات ذكية، وشرح قواعد واضح بالعربية.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('lessons')">ابدأ التعلم الآن</button>
+      <button class="btn-outline" onclick="showPage('quiz')">جرّب اختبار سريع</button>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">كلمة إنجليزية</div></div>
+    <div class="stat"><div class="stat-num">30</div><div class="stat-label">درس شامل</div></div>
+    <div class="stat"><div class="stat-num">12</div><div class="stat-label">اختبار تفاعلي</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">مجاني</div></div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">ما الذي <span>ستتعلمه؟</span></h2>
+    <p class="section-sub">المنصة مصممة لتأخذك من المبتدئ إلى المتقدم خطوة بخطوة</p>
+    <div class="lessons-grid">
+      <div class="lesson-card" onclick="showPage('lessons')">
+        <div class="lesson-icon">🔤</div>
+        <div class="lesson-title">المفردات اليومية</div>
+        <div class="lesson-desc">تعلم الكلمات الأكثر استخداماً في الحياة اليومية مع الأمثلة والتمارين</div>
+      </div>
+      <div class="lesson-card" onclick="showPage('grammar')">
+        <div class="lesson-icon">📐</div>
+        <div class="lesson-title">قواعد اللغة</div>
+        <div class="lesson-desc">شرح مبسط لقواعد اللغة الإنجليزية بالعربية مع أمثلة عملية</div>
+      </div>
+      <div class="lesson-card" onclick="showPage('speaking')">
+        <div class="lesson-icon">💬</div>
+        <div class="lesson-title">جمل المحادثة</div>
+        <div class="lesson-desc">أهم العبارات والجمل للمحادثة اليومية والمواقف المختلفة</div>
+      </div>
+      <div class="lesson-card" onclick="showPage('flashcards')">
+        <div class="lesson-icon">🃏</div>
+        <div class="lesson-title">البطاقات التعليمية</div>
+        <div class="lesson-desc">ادرس الكلمات بطريقة البطاقات المقلوبة لحفظ أسرع وأقوى</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LESSONS PAGE -->
+<div id="lessons" class="page">
+  <div class="section">
+    <h2 class="section-title">📚 <span>الدروس</span></h2>
+    <p class="section-sub">اختر الدرس الذي تريد البدء به</p>
+    <div class="lessons-grid" id="lessons-grid"></div>
+  </div>
+</div>
+
+<!-- LESSON DETAIL -->
+<div id="lesson-detail">
+  <div class="lesson-header">
+    <button class="back-btn" onclick="backToLessons()">→ العودة للدروس</button>
+    <h2 id="detail-title" style="font-family:'Playfair Display',serif;color:var(--gold);font-size:1.4rem;"></h2>
+  </div>
+  <div class="lesson-content-wrap" id="lesson-content-wrap"></div>
+</div>
+
+<!-- FLASHCARDS PAGE -->
+<div id="flashcards" class="page">
+  <div class="flashcard-area">
+    <h2 class="section-title" style="text-align:center;margin-bottom:0.5rem;">🃏 <span>البطاقات التعليمية</span></h2>
+    <p style="color:var(--text2);text-align:center;margin-bottom:2rem;">اضغط على البطاقة لتقليبها</p>
+    <div class="fc-counter" id="fc-counter">بطاقة 1 من 10</div>
+    <div class="flashcard-wrap" onclick="flipCard()">
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-face flashcard-front">
+          <div class="card-hint">الكلمة بالإنجليزية</div>
+          <div class="card-word" id="fc-word"></div>
+          <div class="card-phonetic" id="fc-phonetic"></div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="card-hint">المعنى بالعربية</div>
+          <div class="card-translation" id="fc-translation"></div>
+          <div class="card-example" id="fc-example"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-controls" id="fc-controls" style="display:none;">
+      <button class="fc-btn fc-learn" onclick="nextCard(false)">🔁 سأراجعها</button>
+      <button class="fc-btn fc-know" onclick="nextCard(true)">✓ أعرفها</button>
+    </div>
+    <div id="fc-done" style="display:none;text-align:center;animation:fadeUp 0.5s ease both;">
+      <div style="font-size:3rem;margin-bottom:1rem;">🎉</div>
+      <div style="font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:0.5rem;">أتقنت جميع البطاقات!</div>
+      <div style="color:var(--text2);margin-bottom:1.5rem;">لقد راجعت كل الكلمات في هذه الجلسة</div>
+      <button class="btn-primary" onclick="startFlashcards()">إعادة البدء</button>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ PAGE -->
+<div id="quiz" class="page">
+  <div class="quiz-container">
+    <h2 class="section-title" style="margin-bottom:0.5rem;">🎯 <span>اختبار المفردات</span></h2>
+    <p style="color:var(--text2);margin-bottom:2rem;">اختر المعنى الصحيح للكلمة</p>
+    <div class="quiz-progress"><div class="quiz-progress-fill" id="quiz-progress" style="width:0%"></div></div>
+    <div id="quiz-card"></div>
+  </div>
+</div>
+
+<!-- GRAMMAR PAGE -->
+<div id="grammar" class="page">
+  <div class="section">
+    <h2 class="section-title">📝 <span>قواعد اللغة</span></h2>
+    <p class="section-sub">شرح مبسط لأهم قواعد اللغة الإنجليزية</p>
+    <div class="grammar-tabs" id="grammar-tabs"></div>
+    <div id="grammar-contents"></div>
+  </div>
+</div>
+
+<!-- SPEAKING PAGE -->
+<div id="speaking" class="page">
+  <div class="speaking-container">
+    <h2 class="section-title" style="margin-bottom:0.5rem;">🔊 <span>جمل المحادثة</span></h2>
+    <p style="color:var(--text2);margin-bottom:2rem;">اضغط على أي جملة لسماع نطقها</p>
+    <div id="speaking-list"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="main.js">
+</script>
+</body>
+</html>
